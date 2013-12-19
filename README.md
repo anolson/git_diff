@@ -2,6 +2,9 @@
 
 A Ruby library for parsing diffs generated with `git diff`
 
+[![Code Climate](https://codeclimate.com/github/anolson/git_diff.png)](https://codeclimate.com/github/anolson/git_diff)
+[![Build Status](https://travis-ci.org/anolson/git_diff.png?branch=master)](https://travis-ci.org/anolson/git_diff)
+
 ## Installation
 
 Add this line to your application's Gemfile:
