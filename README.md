@@ -1,6 +1,6 @@
 # GitDiff
 
-A Ruby library for parse diffs generated with `git diff`
+A Ruby library for parsing diffs generated with `git diff`
 
 ## Installation
 
@@ -19,6 +19,10 @@ Or install it yourself as:
 ## Usage
 
     GitDiff.from_string(diff)
+
+## Run the tests
+
+    $ bundle exec rake test
 
 ## Contributing
 
