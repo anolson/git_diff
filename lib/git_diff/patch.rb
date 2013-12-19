@@ -19,11 +19,11 @@ module GitDiff
     end
 
     def additions
-      hunks.map { |hunk| hunk.select(&:addition?) }.flatten
+      hunks.map { |hunk| hunk.additions }.flatten
     end
 
     def deletions
-      hunks.map { |hunk| hunk.select(&:deletion?) }.flatten
+      hunks.map { |hunk| hunk.deletions }.flatten
     end
 
     private

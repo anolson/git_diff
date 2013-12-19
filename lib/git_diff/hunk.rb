@@ -13,5 +13,13 @@ module GitDiff
       @header = range_info[3].strip
       @lines = []
     end
+
+    def additions
+      select(&:addition?)
+    end
+
+    def deletions
+      select(&:deletion?)
+    end
   end
 end
