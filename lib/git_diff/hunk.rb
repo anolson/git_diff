@@ -7,15 +7,18 @@ module GitDiff
 
     attr_reader :lines, :old_range, :new_range, :header
 
-    def self.from_string(string)
-      if(range_data = extract_hunk_range_data(string))
-        Hunk.new(*range_data.captures)
+    module ClassMethods
+      def from_string(string)
+        if(range_data = extract_hunk_range_data(string))
+          Hunk.new(*range_data.captures)
+        end
+      end
+
+      def extract_hunk_range_data(string)
+        /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(string)
       end
     end
-
-    def self.extract_hunk_range_data(string)
-      /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(string)
-    end
+    extend ClassMethods
 
     def initialize(old_range, new_range, header)
       @old_range = Range::Old.from_string(old_range)
