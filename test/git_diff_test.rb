@@ -8,7 +8,7 @@ diff --git a/lib/grit/commit.rb b/lib/grit/commit.rb
 index 403ea33..dd4b590 100644
 --- a/lib/grit/commit.rb
 +++ b/lib/grit/commit.rb
-@@ -27,6 +27,7 @@ module Grit
+@@ -27,6 +27,7 @@
 
        lines = info.split("\n")
        tree = lines.shift.split(' ', 2).last
@@ -93,7 +93,7 @@ index 033b446..0e2d140 100644
     first_hunk = first_diff_file.patch.hunks.first
     second_hunk = last_diff_file.patch.hunks.first
 
-    assert_equal "module Grit", first_hunk.header
+    assert_equal "", first_hunk.header
     assert_equal "module Grit", second_hunk.header
   end
 end

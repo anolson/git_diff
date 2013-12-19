@@ -7,8 +7,8 @@ module GitDiff
     end
 
     def <<(line)
-      if(range_info = extract_hunk_range_info(line))
-        add_hunk range_info
+      if(hunk = Hunk.from_string(line.to_s))
+        add_hunk hunk
       else
         append_to_current_hunk line
       end
@@ -30,12 +30,8 @@ module GitDiff
 
     attr_accessor :current_hunk
 
-    def extract_hunk_range_info(line)
-      /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(line.to_s)
-    end
-
-    def add_hunk(range_info)
-      self.current_hunk = Hunk.new(range_info)
+    def add_hunk(hunk)
+      self.current_hunk = hunk
       hunks << current_hunk
     end
 
