@@ -1,6 +1,6 @@
 # GitDiff
 
-TODO: Write a gem description
+A Ruby library for parse diffs generated with `git diff`
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    GitDiff.from_string(diff)
 
 ## Contributing
 
