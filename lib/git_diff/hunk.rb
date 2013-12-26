@@ -31,7 +31,7 @@ module GitDiff
     end
 
     def <<(string)
-      lines << Line.new(string, current_line_number)
+      lines << Line.from_string(string, current_line_number)
     end
 
     def additions
