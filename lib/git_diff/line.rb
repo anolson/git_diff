@@ -4,17 +4,11 @@ require "git_diff/line/deletion"
 
 module GitDiff
   module Line
-
     module ClassMethods
       def from_string(string, line_number)
-        case
-        when string.start_with?("+")
-          Addition.new(string, line_number)
-        when string.start_with?("-")
-          Deletion.new(string, line_number)
-        else
-          Base.new(string, line_number)
-        end
+        Addition.from_string(string, line_number) ||
+        Deletion.from_string(string, line_number) ||
+        Base.new(string, line_number)
       end
     end
     extend ClassMethods
