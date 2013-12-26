@@ -111,7 +111,6 @@ index 033b446..0e2d140 100644
       [32,33]
       ], first_hunk.lines.map { |line| line.line_number.pair }
 
-
     assert_equal [
       [180,180],
       [181,181],

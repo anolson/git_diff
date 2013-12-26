@@ -4,12 +4,11 @@ module GitDiff
 
     def_delegators :content, :start_with?
 
-    attr_reader :content
-    attr_accessor :line_number
+    attr_reader :content, :line_number
 
-    def initialize(content)
+    def initialize(content, line_number)
       @content = content
-      @line_number = nil
+      set_line_number(line_number)
     end
 
     def addition?
@@ -22,6 +21,19 @@ module GitDiff
 
     def to_s
       content
+    end
+
+    private
+
+    def set_line_number(line_number)
+      case
+      when addition?
+        @line_number = LineNumber.from_addition(line_number)
+      when deletion?
+        @line_number = LineNumber.from_deletion(line_number)
+      else
+        @line_number = LineNumber.from_line_number(line_number)
+      end
     end
   end
 end
