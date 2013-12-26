@@ -7,7 +7,7 @@ module GitDiff
     end
 
     def <<(line)
-      if(hunk = Hunk.from_string(line.to_s))
+      if(hunk = Hunk.from_string(line))
         add_hunk hunk
       else
         append_to_current_hunk line

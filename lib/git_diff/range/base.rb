@@ -8,8 +8,8 @@ module GitDiff
       end
 
       def initialize(start, number_of_lines)
-        @start = start
-        @number_of_lines = number_of_lines
+        @start = start.to_i
+        @number_of_lines = number_of_lines.to_i
       end
 
       def to_s

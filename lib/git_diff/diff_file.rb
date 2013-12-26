@@ -9,7 +9,7 @@ module GitDiff
     def <<(line)
       return if extract_diff_meta_data(line)
 
-      patch << Line.new(line)
+      patch << line
     end
 
     def total_additions

@@ -5,9 +5,11 @@ module GitDiff
     def_delegators :content, :start_with?
 
     attr_reader :content
+    attr_accessor :line_number
 
     def initialize(content)
       @content = content
+      @line_number = nil
     end
 
     def addition?
