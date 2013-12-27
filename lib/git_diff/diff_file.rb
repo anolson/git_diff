@@ -2,6 +2,12 @@ module GitDiff
   class DiffFile
     attr_reader :a_path, :a_blob, :b_path, :b_blob, :b_mode, :patch
 
+    def self.from_string(string)
+      if /^diff --git/.match(string)
+        DiffFile.new
+      end
+    end
+
     def initialize
       @patch = Patch.new
     end
