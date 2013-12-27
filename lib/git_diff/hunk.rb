@@ -3,7 +3,7 @@ module GitDiff
     include Enumerable
     extend Forwardable
 
-    def_delegators :lines, :each, :<<
+    def_delegators :lines, :each
 
     attr_reader :lines, :old_range, :new_range, :header
 
@@ -27,12 +27,29 @@ module GitDiff
       @lines = []
     end
 
+    def <<(string)
+      Line.from_string(string, current_line_number).tap do |line|
+        lines << line
+        line_number_calculation.increment(line)
+      end
+    end
+
     def additions
       select(&:addition?)
     end
 
     def deletions
       select(&:deletion?)
+    end
+
+    private
+
+    def current_line_number
+      line_number_calculation.current
+    end
+
+    def line_number_calculation
+      @line_number_calculation ||= LineNumberCalculation.new(old_range.start, new_range.start)
     end
   end
 end

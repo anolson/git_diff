@@ -1,25 +1,16 @@
+require "git_diff/line/context"
+require "git_diff/line/addition"
+require "git_diff/line/deletion"
+
 module GitDiff
-  class Line
-    extend Forwardable
-
-    def_delegators :content, :start_with?
-
-    attr_reader :content
-
-    def initialize(content)
-      @content = content
+  module Line
+    module ClassMethods
+      def from_string(string, line_number)
+        Addition.from_string(string, line_number) ||
+        Deletion.from_string(string, line_number) ||
+        Context.new(string, line_number)
+      end
     end
-
-    def addition?
-      start_with?("+")
-    end
-
-    def deletion?
-      start_with?("-")
-    end
-
-    def to_s
-      content
-    end
+    extend ClassMethods
   end
 end

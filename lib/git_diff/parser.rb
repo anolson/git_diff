@@ -9,8 +9,8 @@ module GitDiff
 
     def parse
       lines.each do |line|
-        if new_diff_file?(line)
-          add_diff_file
+        if diff_file = DiffFile.from_string(line)
+          add_diff_file diff_file
         else
           append_to_current_diff_file line
         end
@@ -21,12 +21,8 @@ module GitDiff
 
     attr_accessor :current_diff_file
 
-    def new_diff_file?(line)
-      /^diff --git/.match(line)
-    end
-
-    def add_diff_file
-      self.current_diff_file = DiffFile.new
+    def add_diff_file(diff_file)
+      self.current_diff_file = diff_file
       diff_files << current_diff_file
     end
 

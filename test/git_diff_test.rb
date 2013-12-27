@@ -10,7 +10,7 @@ index 403ea33..dd4b590 100644
 +++ b/lib/grit/commit.rb
 @@ -27,6 +27,7 @@
 
-       lines = info.split("\n")
+       lines = info.split("\\n")
        tree = lines.shift.split(' ', 2).last
 +
        parents = []
@@ -47,7 +47,7 @@ index 033b446..0e2d140 100644
   end
 
   def test_returns_the_number_of_lines_per_file
-    assert_equal 8, first_diff_file.patch.count
+    assert_equal 7, first_diff_file.patch.count
     assert_equal 8, last_diff_file.patch.count
   end
 
@@ -95,5 +95,31 @@ index 033b446..0e2d140 100644
 
     assert_equal "", first_hunk.header
     assert_equal "module Grit", second_hunk.header
+  end
+
+  def test_returns_the_correct_line_numbers
+    first_hunk = first_diff_file.patch.hunks.first
+    second_hunk = last_diff_file.patch.hunks.first
+
+    assert_equal [
+      [27,27],
+      [28,28],
+      [29,29],
+      [nil,30],
+      [30,31],
+      [31,32],
+      [32,33]
+      ], first_hunk.lines.map { |line| line.line_number.pair }
+
+    assert_equal [
+      [180,180],
+      [181,181],
+      [182,182],
+      [183,nil],
+      [nil,183],
+      [184,184],
+      [185,185],
+      [186,186]
+      ], second_hunk.lines.map { |line| line.line_number.pair }
   end
 end

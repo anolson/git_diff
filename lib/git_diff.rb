@@ -1,6 +1,8 @@
 require "git_diff/diff_file"
 require "git_diff/hunk"
 require "git_diff/line"
+require "git_diff/line_number"
+require "git_diff/line_number_calculation"
 require "git_diff/parser"
 require "git_diff/patch"
 require "git_diff/range"

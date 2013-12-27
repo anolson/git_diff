@@ -6,11 +6,11 @@ module GitDiff
       @hunks = []
     end
 
-    def <<(line)
-      if(hunk = Hunk.from_string(line.to_s))
+    def <<(string)
+      if(hunk = Hunk.from_string(string))
         add_hunk hunk
       else
-        append_to_current_hunk line
+        append_to_current_hunk string
       end
     end
 
@@ -35,8 +35,8 @@ module GitDiff
       hunks << current_hunk
     end
 
-    def append_to_current_hunk(line)
-      current_hunk << line
+    def append_to_current_hunk(string)
+      current_hunk << string
     end
   end
 end
