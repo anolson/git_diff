@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    git_diff (0.0.1)
+    git_diff (0.1.0)
 
 GEM
   remote: https://rubygems.org/
