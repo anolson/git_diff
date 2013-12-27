@@ -1,6 +1,6 @@
 module GitDiff
   module Line
-    class Base
+    class Context
       attr_reader :content, :line_number
 
       def initialize(content, line_number)

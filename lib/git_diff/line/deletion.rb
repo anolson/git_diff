@@ -1,6 +1,6 @@
 module GitDiff
   module Line
-    class Deletion < Base
+    class Deletion < Context
 
       def self.from_string(string, line_number)
         new(string, line_number) if string.start_with?("-")

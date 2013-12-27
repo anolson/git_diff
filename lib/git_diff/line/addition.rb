@@ -1,6 +1,6 @@
 module GitDiff
   module Line
-    class Addition < Base
+    class Addition < Context
 
       def self.from_string(string, line_number)
         new(string, line_number) if string.start_with?("+")
