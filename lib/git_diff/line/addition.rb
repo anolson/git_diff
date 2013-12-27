@@ -7,7 +7,7 @@ module GitDiff
       end
 
       def initialize(content, line_number)
-        super(content)
+        super(content, line_number)
         @line_number = LineNumber.from_addition(line_number)
       end
 

@@ -3,9 +3,9 @@ module GitDiff
     class Base
       attr_reader :content, :line_number
 
-      def initialize(content, line_number=nil)
+      def initialize(content, line_number)
         @content = content
-        @line_number = LineNumber.from_line_number(line_number) if line_number
+        @line_number = LineNumber.from_line_number(line_number)
       end
 
       def deletion?

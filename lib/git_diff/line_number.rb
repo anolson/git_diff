@@ -4,15 +4,15 @@ module GitDiff
 
     module ClassMethods
       def from_addition(line_number)
-        new(nil, line_number.right).tap { line_number.increment_right }
+        new(nil, line_number.right)
       end
 
       def from_deletion(line_number)
-        new(line_number.left, nil).tap { line_number.increment_left }
+        new(line_number.left, nil)
       end
 
       def from_line_number(line_number)
-        new(line_number.left, line_number.right).tap { line_number.increment }
+        new(line_number.left, line_number.right)
       end
     end
     extend ClassMethods

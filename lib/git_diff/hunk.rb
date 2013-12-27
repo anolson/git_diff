@@ -5,7 +5,7 @@ module GitDiff
 
     def_delegators :lines, :each
 
-    attr_reader :lines, :old_range, :new_range, :header, :current_line_number
+    attr_reader :lines, :old_range, :new_range, :header
 
     module ClassMethods
       def from_string(string)
@@ -23,15 +23,15 @@ module GitDiff
     def initialize(old_range, new_range, header)
       @old_range = Range::Old.from_string(old_range)
       @new_range = Range::New.from_string(new_range)
-
-      @current_line_number = LineNumber.new(@old_range.start, @new_range.start)
-
       @header = header.strip
       @lines = []
     end
 
     def <<(string)
-      lines << Line.from_string(string, current_line_number)
+      Line.from_string(string, current_line_number).tap do |line|
+        lines << line
+        line_number_calculation.increment(line)
+      end
     end
 
     def additions
@@ -40,6 +40,16 @@ module GitDiff
 
     def deletions
       select(&:deletion?)
+    end
+
+    private
+
+    def current_line_number
+      line_number_calculation.current
+    end
+
+    def line_number_calculation
+      @line_number_calculation ||= LineNumberCalculation.new(old_range.start, new_range.start)
     end
   end
 end
