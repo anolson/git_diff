@@ -47,8 +47,8 @@ index 033b446..0e2d140 100644
   end
 
   def test_returns_the_number_of_lines_per_file
-    assert_equal 7, first_diff_file.patch.count
-    assert_equal 8, last_diff_file.patch.count
+    assert_equal 7, first_diff_file.total_number_of_lines
+    assert_equal 8, last_diff_file.total_number_of_lines
   end
 
   def test_returns_the_path_info
@@ -80,26 +80,26 @@ index 033b446..0e2d140 100644
   end
 
   def test_returns_the_hunk_range_info
-    first_hunk = first_diff_file.patch.hunks.first
+    first_hunk = first_diff_file.hunks.first
     assert_equal "-27,6", first_hunk.old_range.to_s
     assert_equal "+27,7", first_hunk.new_range.to_s
 
-    second_hunk = last_diff_file.patch.hunks.first
+    second_hunk = last_diff_file.hunks.first
     assert_equal "-180,7", second_hunk.old_range.to_s
     assert_equal "+180,7", second_hunk.new_range.to_s
   end
 
   def test_returns_the_hunk_header
-    first_hunk = first_diff_file.patch.hunks.first
-    second_hunk = last_diff_file.patch.hunks.first
+    first_hunk = first_diff_file.hunks.first
+    second_hunk = last_diff_file.hunks.first
 
     assert_equal "", first_hunk.header
     assert_equal "module Grit", second_hunk.header
   end
 
   def test_returns_the_correct_line_numbers
-    first_hunk = first_diff_file.patch.hunks.first
-    second_hunk = last_diff_file.patch.hunks.first
+    first_hunk = first_diff_file.hunks.first
+    second_hunk = last_diff_file.hunks.first
 
     assert_equal [
       [27,27],

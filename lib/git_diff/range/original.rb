@@ -1,6 +1,6 @@
 module GitDiff
   module Range
-    class Old < Base
+    class Original < Base
       def to_s
         "-#{super}"
       end

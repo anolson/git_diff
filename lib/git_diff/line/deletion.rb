@@ -1,14 +1,15 @@
 module GitDiff
   module Line
     class Deletion < Context
+      extend GitDiff::Line::Change
 
-      def self.from_string(string, line_number)
-        new(string, line_number) if string.start_with?("-")
+      def self.change?(string)
+        string.start_with?("-")
       end
 
       def initialize(content, line_number)
         super(content, line_number)
-        @line_number = LineNumber.from_deletion(line_number)
+        @line_number = LineNumber.for_deletion(line_number)
       end
 
       def deletion?

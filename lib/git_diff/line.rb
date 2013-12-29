@@ -1,4 +1,5 @@
 require "git_diff/line/context"
+require "git_diff/line/change"
 require "git_diff/line/addition"
 require "git_diff/line/deletion"
 

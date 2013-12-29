@@ -21,7 +21,7 @@ module GitDiff
     extend ClassMethods
 
     def initialize(old_range, new_range, header)
-      @old_range = Range::Old.from_string(old_range)
+      @old_range = Range::Original.from_string(old_range)
       @new_range = Range::New.from_string(new_range)
       @header = header.strip
       @lines = []
@@ -29,8 +29,8 @@ module GitDiff
 
     def <<(string)
       Line.from_string(string, current_line_number).tap do |line|
-        lines << line
         line_number_calculation.increment(line)
+        lines << line
       end
     end
 
@@ -48,8 +48,12 @@ module GitDiff
       line_number_calculation.current
     end
 
+    def initial_line_number
+      @initial_line_number ||= LineNumber.new(old_range.start, new_range.start)
+    end
+
     def line_number_calculation
-      @line_number_calculation ||= LineNumberCalculation.new(old_range.start, new_range.start)
+      @line_number_calculation ||= LineNumberCalculation.new(initial_line_number)
     end
   end
 end

@@ -3,15 +3,15 @@ module GitDiff
     attr_reader :left, :right
 
     module ClassMethods
-      def from_addition(line_number)
+      def for_addition(line_number)
         new(nil, line_number.right)
       end
 
-      def from_deletion(line_number)
+      def for_deletion(line_number)
         new(line_number.left, nil)
       end
 
-      def from_line_number(line_number)
+      def for_context(line_number)
         new(line_number.left, line_number.right)
       end
     end
