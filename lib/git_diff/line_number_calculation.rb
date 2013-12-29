@@ -3,8 +3,8 @@ module GitDiff
 
     attr_reader :current
 
-    def initialize(left_start, right_start)
-      @current = LineNumber.new(left_start, right_start)
+    def initialize(line_number)
+      @current = line_number
     end
 
     def increment(line)

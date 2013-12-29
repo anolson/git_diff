@@ -29,8 +29,8 @@ module GitDiff
 
     def <<(string)
       Line.from_string(string, current_line_number).tap do |line|
-        lines << line
         line_number_calculation.increment(line)
+        lines << line
       end
     end
 
@@ -48,8 +48,12 @@ module GitDiff
       line_number_calculation.current
     end
 
+    def initial_line_number
+      @initial_line_number ||= LineNumber.new(old_range.start, new_range.start)
+    end
+
     def line_number_calculation
-      @line_number_calculation ||= LineNumberCalculation.new(old_range.start, new_range.start)
+      @line_number_calculation ||= LineNumberCalculation.new(initial_line_number)
     end
   end
 end
