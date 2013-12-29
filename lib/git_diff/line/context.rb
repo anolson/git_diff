@@ -5,7 +5,7 @@ module GitDiff
 
       def initialize(content, line_number)
         @content = content
-        @line_number = LineNumber.from_line_number(line_number)
+        @line_number = LineNumber.for_context(line_number)
       end
 
       def deletion?
