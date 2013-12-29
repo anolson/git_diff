@@ -21,7 +21,7 @@ module GitDiff
     extend ClassMethods
 
     def initialize(old_range, new_range, header)
-      @old_range = Range::Old.from_string(old_range)
+      @old_range = Range::Original.from_string(old_range)
       @new_range = Range::New.from_string(new_range)
       @header = header.strip
       @lines = []
