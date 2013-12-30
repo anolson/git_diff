@@ -21,6 +21,12 @@ Or install it yourself as:
 
 ## Usage
 
+#### Generate a diff
+
+    $ git diff
+
+#### Parse the output with
+
     GitDiff.from_string(diff)
 
 ## Run the tests
