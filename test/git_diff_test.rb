@@ -3,14 +3,14 @@ require "test_helper"
 class GitDiffTest < MiniTest::Unit::TestCase
 
   def setup
-    string = <<-DIFF
+    string = <<-'DIFF'
 diff --git a/lib/grit/commit.rb b/lib/grit/commit.rb
 index 403ea33..dd4b590 100644
 --- a/lib/grit/commit.rb
 +++ b/lib/grit/commit.rb
 @@ -27,6 +27,7 @@
 
-       lines = info.split("\\n")
+       lines = info.split("\n")
        tree = lines.shift.split(' ', 2).last
 +
        parents = []
