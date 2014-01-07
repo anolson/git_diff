@@ -9,19 +9,6 @@ module GitDiff
 
     attr_reader :lines, :range_info
 
-    module ClassMethods
-      def from_string(string)
-        if(range_info = RangeInfo.from_string(string))
-          Hunk.new(range_info)
-        end
-      end
-
-      # def extract_hunk_range_data(string)
-      #   /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(string)
-      # end
-    end
-    extend ClassMethods
-
     def initialize(range_info)
       @range_info = range_info
       @lines = []
