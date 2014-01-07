@@ -81,20 +81,10 @@ index 033b446..0e2d140 100644
 
   def test_returns_the_hunk_range_info
     first_hunk = first_diff_file.hunks.first
-    assert_equal "-27,6", first_hunk.old_range.to_s
-    assert_equal "+27,7", first_hunk.new_range.to_s
+    assert_equal "@@ -27,6 +27,7 @@", first_hunk.range_info.to_s
 
     second_hunk = last_diff_file.hunks.first
-    assert_equal "-180,7", second_hunk.old_range.to_s
-    assert_equal "+180,7", second_hunk.new_range.to_s
-  end
-
-  def test_returns_the_hunk_header
-    first_hunk = first_diff_file.hunks.first
-    second_hunk = last_diff_file.hunks.first
-
-    assert_equal "", first_hunk.header
-    assert_equal "module Grit", second_hunk.header
+    assert_equal "@@ -180,7 +180,7 @@ module Grit", second_hunk.range_info.to_s
   end
 
   def test_returns_the_correct_line_numbers
