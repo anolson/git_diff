@@ -22,7 +22,7 @@ module GitDiff
     end
 
     def to_s
-      "@@ #{original_range.to_s(:-)} #{new_range.to_s(:+)} @@ #{@header}".strip
+      "@@ #{original_range.to_s(:-)} #{new_range.to_s(:+)} @@ #{header}".strip
     end
   end
 end
