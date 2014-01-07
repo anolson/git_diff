@@ -15,8 +15,8 @@ module GitDiff
     def <<(string)
       return if extract_diff_meta_data(string)
 
-      if(hunk = Hunk.from_string(string))
-        add_hunk hunk
+      if(range_info = RangeInfo.from_string(string))
+        add_hunk Hunk.new(range_info)
       else
         append_to_current_hunk string
       end

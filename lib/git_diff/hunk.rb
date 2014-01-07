@@ -1,3 +1,5 @@
+
+
 module GitDiff
   class Hunk
     include Enumerable
@@ -5,25 +7,10 @@ module GitDiff
 
     def_delegators :lines, :each
 
-    attr_reader :lines, :old_range, :new_range, :header
+    attr_reader :lines, :range_info
 
-    module ClassMethods
-      def from_string(string)
-        if(range_data = extract_hunk_range_data(string))
-          Hunk.new(*range_data.captures)
-        end
-      end
-
-      def extract_hunk_range_data(string)
-        /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(string)
-      end
-    end
-    extend ClassMethods
-
-    def initialize(old_range, new_range, header)
-      @old_range = Range::Original.from_string(old_range)
-      @new_range = Range::New.from_string(new_range)
-      @header = header.strip
+    def initialize(range_info)
+      @range_info = range_info
       @lines = []
     end
 
@@ -49,7 +36,7 @@ module GitDiff
     end
 
     def initial_line_number
-      @initial_line_number ||= LineNumber.new(old_range.start, new_range.start)
+      @initial_line_number ||= LineNumber.new(range_info.original_range.start, range_info.new_range.start)
     end
 
     def line_number_calculation
