@@ -23,11 +23,55 @@ Or install it yourself as:
 
 #### Generate a diff
 
-    $ git diff
+```sh
+$ git diff
+diff --git a/README.md b/README.md
+index bbbf9c9..9dff09f 100644
+--- a/README.md
++++ b/README.md
+@@ -25,7 +25,7 @@ Or install it yourself as:
 
-#### Parse the output with
+     $ git diff
 
-    GitDiff.from_string(diff)
+-#### Parse the output with
++#### Parse the output
+
+     GitDiff.from_string(diff)
+
+```
+
+#### Parse the output
+
+```ruby
+require "forwardable"
+require "git_diff"
+
+diff = <<-DIFF
+diff --git a/README.md b/README.md
+index bbbf9c9..9dff09f 100644
+--- a/README.md
++++ b/README.md
+@@ -25,7 +25,7 @@ Or install it yourself as:
+
+     $ git diff
+
+-#### Parse the output with
++#### Parse the output
+
+     GitDiff.from_string(diff)
+
+DIFF
+
+diff_file = GitDiff.from_string(diff).first
+
+puts " #{diff_file.total_additions} addition(s)."
+puts " #{diff_file.total_deletions} deletion(s)."
+```
+
+```
+1 addition(s).
+1 deletion(s).
+```
 
 ## Run the tests
 
