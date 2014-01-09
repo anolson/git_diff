@@ -43,7 +43,6 @@ index bbbf9c9..9dff09f 100644
 #### Parse the output
 
 ```ruby
-require "forwardable"
 require "git_diff"
 
 diff = <<-DIFF
@@ -68,6 +67,7 @@ puts " #{diff_file.total_additions} addition(s)."
 puts " #{diff_file.total_deletions} deletion(s)."
 ```
 
+_Outputs_
 ```
 1 addition(s).
 1 deletion(s).
