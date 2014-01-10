@@ -10,18 +10,18 @@ class HunkTest < MiniTest::Unit::TestCase
   def test_append_context_line
     @hunk << "some content"
 
-    assert_equal 1, @hunk.lines.count
+    assert_equal 1, @hunk.total_number_of_lines
   end
 
   def test_append_addition_line
     @hunk << "+ addition"
 
-    assert_equal 1, @hunk.additions.count
+    assert_equal 1, @hunk.total_number_of_additions
   end
 
   def test_append_deletion_line
     @hunk << "- deletion"
 
-    assert_equal 1, @hunk.deletions.count
+    assert_equal 1, @hunk.total_number_of_deletions
   end
 end

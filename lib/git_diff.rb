@@ -6,6 +6,7 @@ require "git_diff/line_number_calculation"
 require "git_diff/line_number_range"
 require "git_diff/parser"
 require "git_diff/range_info"
+require "git_diff/stats"
 require "git_diff/version"
 
 module GitDiff

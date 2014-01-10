@@ -21,12 +21,16 @@ module GitDiff
       end
     end
 
-    def additions
-      select(&:addition?)
+    def total_number_of_lines
+      lines.count
     end
 
-    def deletions
-      select(&:deletion?)
+    def total_number_of_additions
+      select(&:addition?).count
+    end
+
+    def total_number_of_deletions
+      select(&:deletion?).count
     end
 
     private

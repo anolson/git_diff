@@ -1,6 +1,15 @@
+require "forwardable"
+
 module GitDiff
   class DiffFile
+    extend Forwardable
+
     attr_reader :a_path, :a_blob, :b_path, :b_blob, :b_mode, :hunks
+
+    def_delegators :stats,
+      :total_number_of_additions,
+      :total_number_of_deletions,
+      :total_number_of_lines
 
     def self.from_string(string)
       if /^diff --git/.match(string)
@@ -22,16 +31,8 @@ module GitDiff
       end
     end
 
-    def total_number_of_lines
-      hunks.inject(0) { |count, hunk| count + hunk.count }
-    end
-
-    def total_additions
-      additions.count
-    end
-
-    def total_deletions
-      deletions.count
+    def stats
+      @stats ||= Stats.new(hunks)
     end
 
     private
@@ -45,14 +46,6 @@ module GitDiff
 
     def append_to_current_hunk(string)
       current_hunk << string
-    end
-
-    def additions
-      hunks.map { |hunk| hunk.additions }.flatten
-    end
-
-    def deletions
-      hunks.map { |hunk| hunk.deletions }.flatten
     end
 
     def extract_diff_meta_data(string)
