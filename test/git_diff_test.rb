@@ -75,8 +75,8 @@ index 033b446..0e2d140 100644
   end
 
   def test_returns_the_total_number_of_subtractions
-    assert_equal 0, first_diff_file.total_number_of_deletions
-    assert_equal 1, last_diff_file.total_number_of_deletions
+    assert_equal 0, first_diff_file.stats.total_number_of_deletions
+    assert_equal 1, last_diff_file.stats.total_number_of_deletions
   end
 
   def test_returns_the_hunk_range_info

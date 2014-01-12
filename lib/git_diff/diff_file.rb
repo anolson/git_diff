@@ -1,15 +1,7 @@
-require "forwardable"
-
 module GitDiff
   class DiffFile
-    extend Forwardable
 
     attr_reader :a_path, :a_blob, :b_path, :b_blob, :b_mode, :hunks
-
-    def_delegators :stats,
-      :total_number_of_additions,
-      :total_number_of_deletions,
-      :total_number_of_lines
 
     def self.from_string(string)
       if /^diff --git/.match(string)
@@ -32,12 +24,16 @@ module GitDiff
     end
 
     def stats
-      @stats ||= Stats.new(hunks)
+      @stats ||= Stats.new(collector)
     end
 
     private
 
     attr_accessor :current_hunk
+
+    def collector
+      ->(type) { hunks.map { |hunk| hunk.stats.total(type) } }
+    end
 
     def add_hunk(hunk)
       self.current_hunk = hunk

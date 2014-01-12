@@ -1,9 +1,13 @@
 module GitDiff
   class Stats
-    attr_reader :collection
+    attr_reader :collector
 
-    def initialize(collection)
-      @collection = collection
+    def initialize(collector)
+      @collector = collector
+    end
+
+    def total(type)
+      public_send("total_#{type}")
     end
 
     def total_number_of_additions
@@ -21,7 +25,15 @@ module GitDiff
     private
 
     def calculate_total(type)
-      collection.inject(0) { |sum, item| sum += item.send("total_#{type}") }
+      collect_stats(type).inject(:+)
+    end
+
+    def collect_stats(type)
+      if collector.respond_to?(:call)
+        collector.call(type)
+      else
+        collector.public_send(type)
+      end
     end
   end
 end

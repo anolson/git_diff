@@ -1,5 +1,8 @@
+require "forwardable"
+
 require "git_diff/diff_file"
 require "git_diff/hunk"
+require "git_diff/hunk_stats_collector"
 require "git_diff/line"
 require "git_diff/line_number"
 require "git_diff/line_number_calculation"

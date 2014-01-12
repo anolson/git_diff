@@ -21,19 +21,15 @@ module GitDiff
       end
     end
 
-    def total_number_of_lines
-      lines.count
-    end
-
-    def total_number_of_additions
-      select(&:addition?).count
-    end
-
-    def total_number_of_deletions
-      select(&:deletion?).count
+    def stats
+      @stats ||= Stats.new(collector)
     end
 
     private
+
+    def collector
+      GitDiff::HunkCollector.new(self)
+    end
 
     def current_line_number
       line_number_calculation.current
