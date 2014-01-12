@@ -61,10 +61,10 @@ index bbbf9c9..9dff09f 100644
 
 DIFF
 
-diff_file = GitDiff.from_string(diff).first
+diff = GitDiff.from_string(diff)
 
-puts " #{diff_file.total_additions} addition(s)."
-puts " #{diff_file.total_deletions} deletion(s)."
+puts " #{diff_file.total_number_of_additions} addition(s)."
+puts " #{diff_file.total_number_of_deletions} deletion(s)."
 ```
 
 _Outputs_
