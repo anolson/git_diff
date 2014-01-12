@@ -31,19 +31,19 @@ index 033b446..0e2d140 100644
            io.seek(size.to_i + 1, IO::SEEK_CUR)
     DIFF
 
-    @diff_files = GitDiff::from_string(string)
+    @diff = GitDiff::from_string(string)
   end
 
   def first_diff_file
-    @diff_files.first
+    @diff.files.first
   end
 
   def last_diff_file
-    @diff_files.last
+    @diff.files.last
   end
 
   def test_returns_the_number_of_files
-    assert_equal 2, @diff_files.count
+    assert_equal 2, @diff.files.count
   end
 
   def test_returns_the_number_of_lines_per_file
@@ -72,11 +72,13 @@ index 033b446..0e2d140 100644
   def test_returns_the_total_number_of_additions
     assert_equal 1, first_diff_file.stats.total_number_of_additions
     assert_equal 1, last_diff_file.stats.total_number_of_additions
+    assert_equal 2, @diff.stats.total_number_of_additions
   end
 
   def test_returns_the_total_number_of_subtractions
     assert_equal 0, first_diff_file.stats.total_number_of_deletions
     assert_equal 1, last_diff_file.stats.total_number_of_deletions
+    assert_equal 2, @diff.stats.total_number_of_additions
   end
 
   def test_returns_the_hunk_range_info

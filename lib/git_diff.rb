@@ -1,6 +1,8 @@
 require "forwardable"
 
-require "git_diff/diff_file"
+
+require "git_diff/diff"
+require "git_diff/file"
 require "git_diff/hunk"
 require "git_diff/hunk_stats_collector"
 require "git_diff/line"
@@ -16,6 +18,6 @@ module GitDiff
   def self.from_string(string)
     parser = Parser.new(string)
     parser.parse
-    parser.diff_files
+    parser.diff
   end
 end
