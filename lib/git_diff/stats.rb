@@ -25,7 +25,7 @@ module GitDiff
     private
 
     def calculate_total(type)
-      collect_stats(type).inject(:+)
+      Array(collect_stats(type)).inject(:+)
     end
 
     def collect_stats(type)

@@ -7,15 +7,15 @@ module GitDiff
     end
 
     def number_of_lines
-      [lines.count]
+      lines.count
     end
 
     def number_of_additions
-      [lines.select(&:addition?).count]
+      lines.select(&:addition?).count
     end
 
     def number_of_deletions
-      [lines.select(&:deletion?).count]
+      lines.select(&:deletion?).count
     end
 
     private
