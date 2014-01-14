@@ -15,7 +15,7 @@ module GitDiff
     end
 
     def <<(string)
-      Line.from_string(string, current_line_number).tap do |line|
+      Line.from_string(string).tap do |line|
         line_number_calculation.increment(line)
         lines << line
       end
@@ -29,10 +29,6 @@ module GitDiff
 
     def collector
       GitDiff::HunkCollector.new(self)
-    end
-
-    def current_line_number
-      line_number_calculation.current
     end
 
     def initial_line_number

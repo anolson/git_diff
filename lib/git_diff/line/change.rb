@@ -1,8 +1,8 @@
 module GitDiff
   module Line
     module Change
-      def from_string(string, line_number)
-        new(string, line_number) if change?(string)
+      def from_string(string)
+        new(string) if change?(string)
       end
 
       def change?(string)

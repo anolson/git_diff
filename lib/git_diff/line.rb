@@ -6,10 +6,10 @@ require "git_diff/line/deletion"
 module GitDiff
   module Line
     module ClassMethods
-      def from_string(string, line_number)
-        Addition.from_string(string, line_number) ||
-        Deletion.from_string(string, line_number) ||
-        Context.new(string, line_number)
+      def from_string(string)
+        Addition.from_string(string) ||
+        Deletion.from_string(string) ||
+        Context.new(string)
       end
     end
     extend ClassMethods
