@@ -24,15 +24,19 @@ module GitDiff
     end
 
     def stats
-      @stats ||= Stats.new(collector)
+      @stats ||= Stats.total(collector)
     end
 
     private
 
     attr_accessor :current_hunk
 
+    # def collector
+    #   ->(type) { hunks.map { |hunk| hunk.stats.total(type) } }
+    # end
+
     def collector
-      ->(type) { hunks.map { |hunk| hunk.stats.total(type) } }
+      GitDiff::StatsCollector::Rollup.new(hunks)
     end
 
     def add_hunk(hunk)

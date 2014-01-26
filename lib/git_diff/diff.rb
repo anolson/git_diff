@@ -15,13 +15,13 @@ module GitDiff
     end
 
     def stats
-      @stats ||= GitDiff::Stats.new(collector)
+      @stats ||= Stats.total(collector)
     end
 
     private
 
     def collector
-      ->(type) { files.map { |file| file.stats.total(type) } }
+      GitDiff::StatsCollector::Rollup.new(files)
     end
 
     attr_accessor :current_file

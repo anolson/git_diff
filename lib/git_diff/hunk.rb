@@ -22,13 +22,13 @@ module GitDiff
     end
 
     def stats
-      @stats ||= Stats.new(collector)
+      @stats ||= Stats.total(collector)
     end
 
     private
 
     def collector
-      GitDiff::HunkStatsCollector.new(self)
+      GitDiff::StatsCollector::Hunk.new(self)
     end
 
     def initial_line_number

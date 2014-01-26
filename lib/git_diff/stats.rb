@@ -1,38 +1,17 @@
 module GitDiff
   class Stats
-    attr_reader :collector
+    attr_reader :number_of_additions, :number_of_lines, :number_of_deletions
 
-    def initialize(collector)
-      @collector = collector
+    module ClassMethods
+      def total(collector)
+        StatsCalculator.new(collector).total
+      end
     end
+    extend ClassMethods
 
-    def total(type)
-      public_send("total_#{type}")
-    end
-
-    def total_number_of_additions
-      calculate_total :number_of_additions
-    end
-
-    def total_number_of_lines
-      calculate_total :number_of_lines
-    end
-
-    def total_number_of_deletions
-      calculate_total :number_of_deletions
-    end
-
-    private
-
-    def calculate_total(type)
-      Array(collect_stats(type)).inject(:+)
-    end
-
-    def collect_stats(type)
-      if collector.respond_to?(:call)
-        collector.call(type)
-      else
-        collector.public_send(type)
+    def initialize(attributes)
+      attributes.each do |name, value|
+        instance_variable_set("@#{name}", value)
       end
     end
   end

@@ -52,9 +52,9 @@ class DiffFileTest < MiniTest::Unit::TestCase
     @file << "           io.seek(size.to_i + 1, IO::SEEK_CUR)"
 
     assert_equal 1, @file.hunks.count
-    assert_equal 8, @file.stats.total_number_of_lines
-    assert_equal 1, @file.stats.total_number_of_additions
-    assert_equal 1, @file.stats.total_number_of_deletions
+    assert_equal 8, @file.stats.number_of_lines
+    assert_equal 1, @file.stats.number_of_additions
+    assert_equal 1, @file.stats.number_of_deletions
   end
 
 end
