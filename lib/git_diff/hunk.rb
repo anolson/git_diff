@@ -28,7 +28,7 @@ module GitDiff
     private
 
     def collector
-      GitDiff::HunkCollector.new(self)
+      GitDiff::HunkStatsCollector.new(self)
     end
 
     def initial_line_number

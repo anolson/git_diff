@@ -1,5 +1,5 @@
 module GitDiff
-  class HunkCollector
+  class HunkStatsCollector
     attr_reader :hunk
 
     def initialize(hunk)
