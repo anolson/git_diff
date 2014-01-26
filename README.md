@@ -63,8 +63,8 @@ DIFF
 
 diff = GitDiff.from_string(diff)
 
-puts " #{diff_file.total_number_of_additions} addition(s)."
-puts " #{diff_file.total_number_of_deletions} deletion(s)."
+puts " #{diff_file.number_of_additions} addition(s)."
+puts " #{diff_file.number_of_deletions} deletion(s)."
 ```
 
 _Outputs_
