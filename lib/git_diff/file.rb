@@ -31,10 +31,6 @@ module GitDiff
 
     attr_accessor :current_hunk
 
-    # def collector
-    #   ->(type) { hunks.map { |hunk| hunk.stats.total(type) } }
-    # end
-
     def collector
       GitDiff::StatsCollector::Rollup.new(hunks)
     end
