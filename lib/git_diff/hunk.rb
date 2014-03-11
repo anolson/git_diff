@@ -15,24 +15,20 @@ module GitDiff
     end
 
     def <<(string)
-      Line.from_string(string, current_line_number).tap do |line|
+      Line.from_string(string).tap do |line|
         line_number_calculation.increment(line)
         lines << line
       end
     end
 
-    def additions
-      select(&:addition?)
-    end
-
-    def deletions
-      select(&:deletion?)
+    def stats
+      @stats ||= Stats.total(collector)
     end
 
     private
 
-    def current_line_number
-      line_number_calculation.current
+    def collector
+      GitDiff::StatsCollector::Hunk.new(self)
     end
 
     def initial_line_number

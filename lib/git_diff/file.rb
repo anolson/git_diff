@@ -1,10 +1,11 @@
 module GitDiff
-  class DiffFile
+  class File
+
     attr_reader :a_path, :a_blob, :b_path, :b_blob, :b_mode, :hunks
 
     def self.from_string(string)
       if /^diff --git/.match(string)
-        DiffFile.new
+        File.new
       end
     end
 
@@ -22,21 +23,17 @@ module GitDiff
       end
     end
 
-    def total_number_of_lines
-      hunks.inject(0) { |count, hunk| count + hunk.count }
-    end
-
-    def total_additions
-      additions.count
-    end
-
-    def total_deletions
-      deletions.count
+    def stats
+      @stats ||= Stats.total(collector)
     end
 
     private
 
     attr_accessor :current_hunk
+
+    def collector
+      GitDiff::StatsCollector::Rollup.new(hunks)
+    end
 
     def add_hunk(hunk)
       self.current_hunk = hunk
@@ -45,14 +42,6 @@ module GitDiff
 
     def append_to_current_hunk(string)
       current_hunk << string
-    end
-
-    def additions
-      hunks.map { |hunk| hunk.additions }.flatten
-    end
-
-    def deletions
-      hunks.map { |hunk| hunk.deletions }.flatten
     end
 
     def extract_diff_meta_data(string)

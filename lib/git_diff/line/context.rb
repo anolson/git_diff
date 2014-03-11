@@ -3,8 +3,12 @@ module GitDiff
     class Context
       attr_reader :content, :line_number
 
-      def initialize(content, line_number)
+      def initialize(content, line_number=nil)
         @content = content
+        @line_number = line_number
+      end
+
+      def line_number=(line_number)
         @line_number = LineNumber.for_context(line_number)
       end
 

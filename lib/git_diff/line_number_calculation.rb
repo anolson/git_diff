@@ -8,6 +8,8 @@ module GitDiff
     end
 
     def increment(line)
+      line.line_number = current
+
       if line.addition?
         current.increment_right
       elsif line.deletion?
