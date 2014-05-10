@@ -10,7 +10,7 @@ module GitDiff
       end
 
       def extract_hunk_range_data(string)
-        /@@ \-(\d+,\d+) \+(\d+,\d+) @@(.*)/.match(string)
+        /@@ \-(.+) \+(.+) @@(.*)/.match(string)
       end
     end
     extend ClassMethods
