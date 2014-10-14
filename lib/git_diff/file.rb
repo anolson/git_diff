@@ -51,7 +51,7 @@ module GitDiff
       when a_path_info = /^[-]{3} a\/(.*)$/.match(string)
         @a_path = a_path_info[1]
       when b_path_info = /^[+]{3} \/dev\/null(.*)$/.match(string)
-        @b_path = b_path_info[1]
+        @b_path = "/dev/null"
       when b_path_info = /^[+]{3} b\/(.*)$/.match(string)
         @b_path = b_path_info[1]
       when blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
