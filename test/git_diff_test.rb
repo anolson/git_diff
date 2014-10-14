@@ -16,6 +16,20 @@ index 403ea33..dd4b590 100644
        parents = []
        parents << lines.shift[7..-1] while lines.first[0, 6] == 'parent'
        author,    authored_date  = Grit::Commit.actor(lines.shift)
+diff --git a/lib/grit/new_file.rb b/lib/grit/new_file.rb
+new file mode 100644
+index 0000000..24f83d1
+--- /dev/null
++++ b/lib/grit/new_file.rb
+@@ -0,0 +1 @@
++#
+diff --git a/grit/old_file.rb b/grit/old_file.rb
+deleted file mode 100644
+index ba6b733..0000000
+--- a/lib/grit/old_file.rb
++++ /dev/null
+@@ -1 +0,0 @@
+-#
 diff --git a/lib/grit/repo.rb b/lib/grit/repo.rb
 index 033b446..0e2d140 100644
 --- a/lib/grit/repo.rb
@@ -43,7 +57,7 @@ index 033b446..0e2d140 100644
   end
 
   def test_returns_the_number_of_files
-    assert_equal 2, @diff.files.count
+    assert_equal 4, @diff.files.count
   end
 
   def test_returns_the_number_of_lines_per_file
@@ -72,13 +86,13 @@ index 033b446..0e2d140 100644
   def test_returns_the_total_number_of_additions
     assert_equal 1, first_diff_file.stats.number_of_additions
     assert_equal 1, last_diff_file.stats.number_of_additions
-    assert_equal 2, @diff.stats.number_of_additions
+    assert_equal 3, @diff.stats.number_of_additions
   end
 
   def test_returns_the_total_number_of_subtractions
     assert_equal 0, first_diff_file.stats.number_of_deletions
     assert_equal 1, last_diff_file.stats.number_of_deletions
-    assert_equal 1, @diff.stats.number_of_deletions
+    assert_equal 2, @diff.stats.number_of_deletions
   end
 
   def test_returns_the_hunk_range_info

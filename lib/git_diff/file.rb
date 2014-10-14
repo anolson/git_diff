@@ -46,12 +46,20 @@ module GitDiff
 
     def extract_diff_meta_data(string)
       case
+      when a_path_info = /^[-]{3} \/dev\/null(.*)$/.match(string)
+        @a_path = "/dev/null"
       when a_path_info = /^[-]{3} a\/(.*)$/.match(string)
         @a_path = a_path_info[1]
+      when b_path_info = /^[+]{3} \/dev\/null(.*)$/.match(string)
+        @b_path = "/dev/null"
       when b_path_info = /^[+]{3} b\/(.*)$/.match(string)
         @b_path = b_path_info[1]
       when blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
         @a_blob, @b_blob, @b_mode = *blob_info.captures
+      when /^new file mode [0-9]{6}$/.match(string)
+        @a_path = "/dev/null"
+      when /^deleted file mode [0-9]{6}$/.match(string)
+        @b_path = "/dev/null"
       end
     end
   end
