@@ -9,7 +9,7 @@ A Ruby library for parsing the unified diff format generated with `git diff`
 
 Add this line to your application's Gemfile:
 
-    gem 'git_diff'
+    gem 'git_diff', git: 'https://github.com/anolson/git_diff.git'
 
 And then execute:
 
