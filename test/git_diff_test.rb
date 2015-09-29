@@ -56,6 +56,10 @@ index 033b446..0e2d140 100644
     @diff.files.last
   end
 
+  def test_returns_an_enumerator_for_each_file
+    assert_equal Enumerator, @diff.each_file.class
+  end
+
   def test_returns_the_number_of_files
     assert_equal 4, @diff.files.count
   end

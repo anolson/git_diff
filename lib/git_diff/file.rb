@@ -23,6 +23,10 @@ module GitDiff
       end
     end
 
+    def each_hunk
+      @hunks.to_enum(:each)
+    end
+
     def stats
       @stats ||= Stats.total(collector)
     end

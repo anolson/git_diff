@@ -7,6 +7,10 @@ class HunkTest < Minitest::Test
     @hunk = GitDiff::Hunk.new(@range_info)
   end
 
+  def test_returns_an_enumerator_for_each_line
+    assert_equal Enumerator, @hunk.each_line.class
+  end
+
   def test_append_context_line
     @hunk << "some content"
 

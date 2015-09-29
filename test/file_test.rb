@@ -6,6 +6,10 @@ class DiffFileTest < Minitest::Test
     @file = GitDiff::File.new
   end
 
+  def test_returns_an_enumerator_for_each_hunk
+    assert_equal Enumerator, @file.each_hunk.class
+  end
+
   def test_from_string_with_a_diff
     file = GitDiff::File.from_string "diff --git"
 

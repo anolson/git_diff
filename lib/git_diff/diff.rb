@@ -14,6 +14,10 @@ module GitDiff
       end
     end
 
+    def each_file
+      files.to_enum(:each)
+    end
+
     def stats
       @stats ||= Stats.total(collector)
     end
