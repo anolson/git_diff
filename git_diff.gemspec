@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "git_diff"
   spec.version       = GitDiff::VERSION
   spec.authors       = ["Andrew Olson"]
-  spec.email         = ["aolson@geezeo.com"]
+  spec.email         = ["anolson@gmail.com"]
   spec.summary       = %q{A Ruby library for parsing git diffs.}
   spec.license       = "MIT"
 
