@@ -6,6 +6,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    minitest (5.8.0)
     rake (10.1.0)
 
 PLATFORMS
@@ -14,4 +15,8 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.3)
   git_diff!
+  minitest (~> 5.0)
   rake
+
+BUNDLED WITH
+   1.10.5
