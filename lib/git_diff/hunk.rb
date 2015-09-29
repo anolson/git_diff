@@ -2,11 +2,6 @@ require "forwardable"
 
 module GitDiff
   class Hunk
-    include Enumerable
-    extend Forwardable
-
-    def_delegators :lines, :each
-
     attr_reader :lines, :range_info
 
     def initialize(range_info)
