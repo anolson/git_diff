@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DiffFileTest < MiniTest::Unit::TestCase
+class DiffFileTest < Minitest::Test
 
   def setup
     @file = GitDiff::File.new
