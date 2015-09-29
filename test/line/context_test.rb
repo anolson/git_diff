@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ContextTest < MiniTest::Unit::TestCase
+class ContextTest < Minitest::Test
   def setup
     @line_number = GitDiff::LineNumber.new(0,0)
     @content = "some content"
