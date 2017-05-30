@@ -25,7 +25,7 @@ class Collector
   end
 end
 
-class StatsCalculatorTest < MiniTest::Unit::TestCase
+class StatsCalculatorTest < Minitest::Test
   def setup
     collector = Collector.new
 

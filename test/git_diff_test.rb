@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GitDiffTest < MiniTest::Unit::TestCase
+class GitDiffTest < Minitest::Test
 
   def setup
     string = <<-'DIFF'

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AdditionTest < MiniTest::Unit::TestCase
+class AdditionTest < Minitest::Test
   def setup
     @addition = GitDiff::Line::Addition.new("+ addition")
   end
