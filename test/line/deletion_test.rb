@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DeletionTest < MiniTest::Unit::TestCase
+class DeletionTest < Minitest::Test
   def setup
     @deletion = GitDiff::Line::Deletion.new("- deletion")
   end

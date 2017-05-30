@@ -1,6 +1,6 @@
 module GitDiff
   class Diff
-    attr_reader :files, :stats
+    attr_reader :files
 
     def initialize
       @files = []

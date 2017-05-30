@@ -1,6 +1,6 @@
 require "test_helper"
 
-class LineNumberRangeTest < MiniTest::Unit::TestCase
+class LineNumberRangeTest < Minitest::Test
 
   def test_from_string_with_empty_string
     range = GitDiff::LineNumberRange.from_string("")
@@ -9,7 +9,7 @@ class LineNumberRangeTest < MiniTest::Unit::TestCase
     assert_equal 0, range.number_of_lines
   end
 
-  def test_from_string_with_empty_string
+  def test_from_string_with_not_empty_string
     range = GitDiff::LineNumberRange.from_string("180,7")
 
     assert_equal 180, range.start
