@@ -1,6 +1,6 @@
 require "test_helper"
 
-class LineTest < MiniTest::Unit::TestCase
+class LineTest < Minitest::Test
 
   def setup
     @line_number = GitDiff::LineNumber.new(0, 0)

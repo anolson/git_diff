@@ -1,6 +1,6 @@
 require "test_helper"
 
-class RangeInfoTest < MiniTest::Unit::TestCase
+class RangeInfoTest < Minitest::Test
   def setup
     @range_info = GitDiff::RangeInfo.new("180,7", "180,7", "module Grit")
   end
