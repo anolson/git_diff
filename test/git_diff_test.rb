@@ -128,4 +128,21 @@ index 033b446..0e2d140 100644
       [186,186]
       ], second_hunk.lines.map { |line| line.line_number.pair }
   end
+
+  def test_binary_file_diff
+    diff = GitDiff.from_string 'diff --git a/app/assets/bin.eot b/app/assets/bin.eot
+new file mode 100644
+index 0000000..2cbab9c
+Binary files /dev/null and b/app/assets/bin.eot differ'
+
+    refute_nil diff
+    assert_instance_of GitDiff::Diff, diff
+
+    assert_equal 1, diff.files.count
+    file = diff.files[0]
+
+    assert file.binary?
+    assert_equal '/dev/null', file.a_path
+    assert_equal "app/assets/bin.eot", file.b_path
+  end
 end
