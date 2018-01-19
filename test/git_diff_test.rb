@@ -162,4 +162,22 @@ new mode 100755'
     assert_equal 'bin/setup', file.a_path
     assert_equal "bin/setup", file.b_path
   end
+
+  def test_rename_diff
+    diff = GitDiff.from_string 'diff --git a/lib/path1/my_file.rb b/lib/path2/my_file2.rb
+similarity index 100%
+rename from lib/path1/my_file.rb
+rename to lib/path2/my_file2.rb'
+
+    refute_nil diff
+    assert_instance_of GitDiff::Diff, diff
+
+    assert_equal 1, diff.files.count
+    file = diff.files[0]
+
+    assert_equal 0, file.hunks.count
+
+    assert_equal 'lib/path1/my_file.rb', file.a_path
+    assert_equal "lib/path2/my_file2.rb", file.b_path
+  end
 end
