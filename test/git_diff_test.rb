@@ -141,8 +141,25 @@ Binary files /dev/null and b/app/assets/bin.eot differ'
     assert_equal 1, diff.files.count
     file = diff.files[0]
 
-    assert file.binary?
+    assert file.binary
     assert_equal '/dev/null', file.a_path
     assert_equal "app/assets/bin.eot", file.b_path
+  end
+
+  def test_perm_change_diff
+    diff = GitDiff.from_string 'diff --git a/bin/setup b/bin/setup
+old mode 100644
+new mode 100755'
+
+    refute_nil diff
+    assert_instance_of GitDiff::Diff, diff
+
+    assert_equal 1, diff.files.count
+    file = diff.files[0]
+
+    assert_equal 0, file.hunks.count
+
+    assert_equal 'bin/setup', file.a_path
+    assert_equal "bin/setup", file.b_path
   end
 end
