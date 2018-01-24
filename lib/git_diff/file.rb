@@ -67,21 +67,21 @@ module GitDiff
       when /^deleted file mode [0-9]{6}$/.match(string)
         @b_path = "/dev/null"
       when mode_info = /^(old|new) mode ([0-9]{6})$/.match(string)
-        if mode_info.captures[0] == 'old'
+        if mode_info.captures[0] == "old"
           @a_mode = mode_info.captures[1]
         else
           @b_mode = mode_info.captures[1]
         end
       when rename_info = /^rename (from|to) (.*)$/.match(string)
-        if rename_info.captures[0] == 'from'
+        if rename_info.captures[0] == "from"
           @a_path = rename_info.captures[1]
         else
           @b_path = rename_info.captures[1]
         end
       when binary_info = /^Binary files (?:\/dev\/null|a\/(.*)) and (?:\/dev\/null|b\/(.*)) differ$/.match(string)
         @binary = true
-        @a_path ||= binary_info[1] || '/dev/null'
-        @b_path ||= binary_info[2] || '/dev/null'
+        @a_path ||= binary_info[1] || "/dev/null"
+        @b_path ||= binary_info[2] || "/dev/null"
       when /^similarity/.match(string)
         # trash
         true

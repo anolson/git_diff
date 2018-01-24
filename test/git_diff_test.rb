@@ -159,7 +159,7 @@ new mode 100755'
 
     assert_equal 0, file.hunks.count
 
-    assert_equal 'bin/setup', file.a_path
+    assert_equal "bin/setup", file.a_path
     assert_equal "bin/setup", file.b_path
   end
 
@@ -177,7 +177,7 @@ rename to lib/path2/my_file2.rb'
 
     assert_equal 0, file.hunks.count
 
-    assert_equal 'lib/path1/my_file.rb', file.a_path
+    assert_equal "lib/path1/my_file.rb", file.a_path
     assert_equal "lib/path2/my_file2.rb", file.b_path
   end
 end
