@@ -6,7 +6,7 @@ class LineNumberRangeTest < Minitest::Test
     range = GitDiff::LineNumberRange.from_string("")
 
     assert_equal 0, range.start
-    assert_equal 0, range.number_of_lines
+    assert_equal 1, range.number_of_lines
   end
 
   def test_from_string_with_not_empty_string
@@ -14,6 +14,13 @@ class LineNumberRangeTest < Minitest::Test
 
     assert_equal 180, range.start
     assert_equal 7, range.number_of_lines
+  end
+
+  def test_from_string_with_start_no_count
+    range = GitDiff::LineNumberRange.from_string("180")
+
+    assert_equal 180, range.start
+    assert_equal 1, range.number_of_lines
   end
 
   def test_to_s
