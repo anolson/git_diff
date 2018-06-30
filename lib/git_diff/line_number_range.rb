@@ -6,7 +6,7 @@ module GitDiff
       new(*string.split(","))
     end
 
-    def initialize(start = 0, number_of_lines = 0)
+    def initialize(start = 0, number_of_lines = 1)
       @start = start.to_i
       @number_of_lines = number_of_lines.to_i
     end
