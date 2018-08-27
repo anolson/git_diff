@@ -54,11 +54,11 @@ module GitDiff
       case
       when a_path_info = /^[-]{3} \/dev\/null(.*)$/.match(string)
         @a_path = "/dev/null"
-      when a_path_info = /^[-]{3} a\/(.*)$/.match(string)
+      when a_path_info = /^[-]{3} "?a\/(.*)$/.match(string)
         @a_path = a_path_info[1]
       when b_path_info = /^[+]{3} \/dev\/null(.*)$/.match(string)
         @b_path = "/dev/null"
-      when b_path_info = /^[+]{3} b\/(.*)$/.match(string)
+      when b_path_info = /^[+]{3} "?b\/(.*)$/.match(string)
         @b_path = b_path_info[1]
       when blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
         @a_blob, @b_blob, @b_mode = *blob_info.captures
@@ -78,7 +78,7 @@ module GitDiff
         else
           @b_path = rename_info.captures[1]
         end
-      when binary_info = /^Binary files (?:\/dev\/null|a\/(.*)) and (?:\/dev\/null|b\/(.*)) differ$/.match(string)
+      when binary_info = /^Binary files (?:\/dev\/null|"?a\/(.*)) and (?:\/dev\/null|"?b\/(.*)) differ$/.match(string)
         @binary = true
         @a_path ||= binary_info[1] || "/dev/null"
         @b_path ||= binary_info[2] || "/dev/null"
