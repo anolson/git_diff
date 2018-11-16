@@ -11,6 +11,10 @@ class ContextTest < Minitest::Test
     refute @context.addition?
   end
 
+  def test_context_is_true
+    assert @context.context?
+  end
+
   def test_deletion_is_false
     refute @context.deletion?
   end

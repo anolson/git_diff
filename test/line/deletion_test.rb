@@ -9,6 +9,10 @@ class DeletionTest < Minitest::Test
     refute @deletion.addition?
   end
 
+  def test_context_is_false
+    refute @deletion.context?
+  end
+
   def test_deletion_is_true
     assert @deletion.deletion?
   end

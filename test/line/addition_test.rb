@@ -9,6 +9,10 @@ class AdditionTest < Minitest::Test
     assert @addition.addition?
   end
 
+  def test_context_is_false
+    refute @addition.context?
+  end
+
   def test_deletion_is_false
     refute @addition.deletion?
   end
