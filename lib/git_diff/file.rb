@@ -72,11 +72,11 @@ module GitDiff
         else
           @b_mode = mode_info.captures[1]
         end
-      when rename_info = /^rename (from|to) (.*)$/.match(string)
-        if rename_info.captures[0] == "from"
-          @a_path = rename_info.captures[1]
+      when copy_rename_info = /^(copy|rename) (from|to) (.*)$/.match(string)
+        if copy_rename_info.captures[1] == "from"
+          @a_path = copy_rename_info.captures[2]
         else
-          @b_path = rename_info.captures[1]
+          @b_path = copy_rename_info.captures[2]
         end
       when binary_info = /^Binary files (?:\/dev\/null|a\/(.*)) and (?:\/dev\/null|b\/(.*)) differ$/.match(string)
         @binary = true
