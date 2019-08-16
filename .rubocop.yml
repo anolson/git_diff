@@ -1,0 +1,46 @@
+AllCops:
+  Include:
+    - "**/*.rb"
+    - "*.gemspec"
+    - "Gemfile"
+    - "Rakefile"
+  TargetRubyVersion: 2.5
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  MinBodyLength: 60
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+
+
+
+
+
