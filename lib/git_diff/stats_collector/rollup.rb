@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   module StatsCollector
     class StatsCollector::Rollup
@@ -8,7 +10,7 @@ module GitDiff
       end
 
       def collect
-        collection.map { |item| item.stats }
+        collection.map(&:stats)
       end
     end
   end

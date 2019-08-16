@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   class LineNumberRange
     attr_reader :start, :number_of_lines

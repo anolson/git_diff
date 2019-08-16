@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 module GitDiff
   class File
-
     attr_reader :a_path, :a_blob, :b_path, :b_blob, :b_mode, :hunks, :binary
 
     def self.from_string(string)
-      if path_info = /^diff --git(?: a\/(\S+))?(?: b\/(\S+))?/.match(string)
+      if path_info = %r{^diff --git(?: a/(\S+))?(?: b/(\S+))?}.match(string)
         File.new(
-          a_path: path_info.captures[0] || '/dev/null',
-          b_path: path_info.captures[1] || '/dev/null'
+          a_path: path_info.captures[0] || "/dev/null",
+          b_path: path_info.captures[1] || "/dev/null"
         )
       end
     end
 
-    def initialize(a_path: '/dev/null', b_path: '/dev/null')
+    def initialize(a_path: "/dev/null", b_path: "/dev/null")
       @hunks = []
       @a_path = a_path
       @b_path = b_path
@@ -21,7 +22,7 @@ module GitDiff
     def <<(string)
       return if extract_diff_meta_data(string)
 
-      if(range_info = RangeInfo.from_string(string))
+      if (range_info = RangeInfo.from_string(string))
         add_hunk Hunk.new(range_info)
       else
         append_to_current_hunk string
@@ -51,38 +52,37 @@ module GitDiff
     end
 
     def extract_diff_meta_data(string)
-      case
-      when a_path_info = /^[-]{3} \/dev\/null(.*)$/.match(string)
+      if a_path_info = %r{^[-]{3} /dev/null(.*)$}.match(string)
         @a_path = "/dev/null"
-      when a_path_info = /^[-]{3} a\/(.*)$/.match(string)
+      elsif a_path_info = %r{^[-]{3} a/(.*)$}.match(string)
         @a_path = a_path_info[1]
-      when b_path_info = /^[+]{3} \/dev\/null(.*)$/.match(string)
+      elsif b_path_info = %r{^[+]{3} /dev/null(.*)$}.match(string)
         @b_path = "/dev/null"
-      when b_path_info = /^[+]{3} b\/(.*)$/.match(string)
+      elsif b_path_info = %r{^[+]{3} b/(.*)$}.match(string)
         @b_path = b_path_info[1]
-      when blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
+      elsif blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
         @a_blob, @b_blob, @b_mode = *blob_info.captures
-      when /^new file mode [0-9]{6}$/.match(string)
+      elsif /^new file mode [0-9]{6}$/.match(string)
         @a_path = "/dev/null"
-      when /^deleted file mode [0-9]{6}$/.match(string)
+      elsif /^deleted file mode [0-9]{6}$/.match(string)
         @b_path = "/dev/null"
-      when mode_info = /^(old|new) mode ([0-9]{6})$/.match(string)
+      elsif mode_info = /^(old|new) mode ([0-9]{6})$/.match(string)
         if mode_info.captures[0] == "old"
           @a_mode = mode_info.captures[1]
         else
           @b_mode = mode_info.captures[1]
         end
-      when copy_rename_info = /^(copy|rename) (from|to) (.*)$/.match(string)
+      elsif copy_rename_info = /^(copy|rename) (from|to) (.*)$/.match(string)
         if copy_rename_info.captures[1] == "from"
           @a_path = copy_rename_info.captures[2]
         else
           @b_path = copy_rename_info.captures[2]
         end
-      when binary_info = /^Binary files (?:\/dev\/null|a\/(.*)) and (?:\/dev\/null|b\/(.*)) differ$/.match(string)
+      elsif binary_info = %r{^Binary files (?:/dev/null|a/(.*)) and (?:/dev/null|b/(.*)) differ$}.match(string)
         @binary = true
         @a_path ||= binary_info[1] || "/dev/null"
         @b_path ||= binary_info[2] || "/dev/null"
-      when /^similarity/.match(string)
+      elsif /^similarity/.match(string)
         # trash
         true
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   class Parser
     attr_reader :string, :diff

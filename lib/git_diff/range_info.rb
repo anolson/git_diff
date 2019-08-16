@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module GitDiff
   class RangeInfo
     attr_reader :original_range, :new_range, :header
 
     module ClassMethods
       def from_string(string)
-        if(range_data = extract_hunk_range_data(string))
+        if (range_data = extract_hunk_range_data(string))
           new(*range_data.captures)
         end
       end

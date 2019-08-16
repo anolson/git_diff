@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class DiffFileTest < Minitest::Test
-
   def setup
     @file = GitDiff::File.new
   end
@@ -45,8 +46,8 @@ class DiffFileTest < Minitest::Test
     @file << "       io = StringIO.new(text)"
     @file << "       objects = []"
     @file << "       while line = io.gets"
-    @file << "-        sha, type, size = line.split(" ", 3)"
-    @file << "+        sha, type, size = line.split(" ", 3) #wut"
+    @file << "-        sha, type, size = line.split(' ', 3)"
+    @file << "+        sha, type, size = line.split(' ', 3) #wut"
     @file << "         parser = BATCH_PARSERS[type]"
     @file << "         if type == 'missing' || !parser"
     @file << "           io.seek(size.to_i + 1, IO::SEEK_CUR)"
@@ -56,5 +57,4 @@ class DiffFileTest < Minitest::Test
     assert_equal 1, @file.stats.number_of_additions
     assert_equal 1, @file.stats.number_of_deletions
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "forwardable"
 
 require "git_diff/stats_collector"

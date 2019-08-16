@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class LineTest < Minitest::Test
-
   def setup
     @line_number = GitDiff::LineNumber.new(0, 0)
   end
-
 
   def test_from_string_with_addition
     addition = GitDiff::Line.from_string("+ addition")
