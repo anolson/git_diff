@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   class Diff
     attr_reader :files

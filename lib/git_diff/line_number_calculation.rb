@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module GitDiff
   class LineNumberCalculation
-
     attr_reader :current
 
     def initialize(line_number)

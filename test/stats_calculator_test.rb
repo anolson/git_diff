@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class Collector
-
   def collect
     GitDiff::Stats.new(
       number_of_lines: number_of_lines,

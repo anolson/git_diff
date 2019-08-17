@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class LineNumberCalculationTest < Minitest::Test
-
   def setup
     @line_number = GitDiff::LineNumber.new(0, 0)
     @line_number_calculation = GitDiff::LineNumberCalculation.new(@line_number)

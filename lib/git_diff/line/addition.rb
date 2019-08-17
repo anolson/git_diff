@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   module Line
     class Addition < Context

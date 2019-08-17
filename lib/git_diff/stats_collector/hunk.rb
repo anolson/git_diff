@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   module StatsCollector
     class Hunk
@@ -33,9 +35,5 @@ module GitDiff
         hunk.lines
       end
     end
-
   end
 end
-
-
-

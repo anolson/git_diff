@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   class Stats
     attr_reader :number_of_additions, :number_of_lines, :number_of_deletions

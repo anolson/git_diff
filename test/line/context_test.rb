@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class ContextTest < Minitest::Test
   def setup
-    @line_number = GitDiff::LineNumber.new(0,0)
+    @line_number = GitDiff::LineNumber.new(0, 0)
     @content = "some content"
     @context = GitDiff::Line::Context.new(@content, @line_number)
   end

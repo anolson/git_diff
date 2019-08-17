@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "git_diff/line/context"
 require "git_diff/line/addition"
 require "git_diff/line/deletion"

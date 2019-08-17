@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module GitDiff
   module Line
     class Context
       attr_reader :content, :line_number
 
-      def initialize(content, line_number=nil)
+      def initialize(content, line_number = nil)
         @content = content
         @line_number = line_number
       end

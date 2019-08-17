@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class HunkTest < Minitest::Test
-
   def setup
     @range_info = GitDiff::RangeInfo.new("180,7", "180,7", "module Grit")
     @hunk = GitDiff::Hunk.new(@range_info)

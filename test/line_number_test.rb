@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class LineNumberTest < Minitest::Test
-
   def setup
-    @line_number = GitDiff::LineNumber.new(0,0)
+    @line_number = GitDiff::LineNumber.new(0, 0)
   end
 
   def test_increment_left
@@ -25,6 +26,6 @@ class LineNumberTest < Minitest::Test
   end
 
   def test_pair
-    assert_equal [0,0], @line_number.pair
+    assert_equal [0, 0], @line_number.pair
   end
 end

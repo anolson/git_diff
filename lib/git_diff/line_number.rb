@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GitDiff
   class LineNumber
     attr_reader :left, :right
