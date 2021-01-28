@@ -54,11 +54,11 @@ module GitDiff
     def extract_diff_meta_data(string)
       if a_path_info = %r{^[-]{3} /dev/null(.*)$}.match(string)
         @a_path = "/dev/null"
-      elsif a_path_info = %r{^[-]{3} a/(.*)$}.match(string)
+      elsif a_path_info = %r{^[-]{3} "?a/(.*)$}.match(string)
         @a_path = a_path_info[1]
       elsif b_path_info = %r{^[+]{3} /dev/null(.*)$}.match(string)
         @b_path = "/dev/null"
-      elsif b_path_info = %r{^[+]{3} b/(.*)$}.match(string)
+      elsif b_path_info = %r{^[+]{3} "?b/(.*)$}.match(string)
         @b_path = b_path_info[1]
       elsif blob_info = /^index ([0-9A-Fa-f]+)\.\.([0-9A-Fa-f]+) ?(.+)?$/.match(string)
         @a_blob, @b_blob, @b_mode = *blob_info.captures
@@ -78,7 +78,7 @@ module GitDiff
         else
           @b_path = copy_rename_info.captures[2]
         end
-      elsif binary_info = %r{^Binary files (?:/dev/null|a/(.*)) and (?:/dev/null|b/(.*)) differ$}.match(string)
+      elsif binary_info = %r{^Binary files (?:/dev/null|"?a/(.*)) and (?:/dev/null|"?b/(.*)) differ$}.match(string)
         @binary = true
         @a_path ||= binary_info[1] || "/dev/null"
         @b_path ||= binary_info[2] || "/dev/null"
